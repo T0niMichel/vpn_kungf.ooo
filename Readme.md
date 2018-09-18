@@ -9,7 +9,7 @@ see > [tinc](http://www.tinc-vpn.org)
 ## Usage
 
 The default entrypoint of the container is tinc, so you can directly issue commands to tinc, 
-for example `docker run tonimichel/vpn_kungf.ooo init` (which will run `tinc init` inside the container) 
+for example `docker run tonimichel/vpn_kungf.ooo /usr/sbin/tincd init ` (which will run `tinc init` inside the container) 
 to have tinc create the basic configuration for you. 
 
 Tinc's configuration is persisted as a volume, 
@@ -30,14 +30,14 @@ A reasonable basic run command loading persisted configuration from `/srv/tinc` 
         --device=/dev/net/tun \
         --cap-add NET_ADMIN \
         --volume /srv/tinc:/etc/tinc \
-        tonimichel/vpn_kungf.ooo /usr/sbin/tincd --help -U nobody
+        tonimichel/vpn_kungf.ooo /usr/sbin/tincd -K 4096  -U nobody
 
 
 ## Administration and Maintenance
 
 [tinc documentation](http://www.tinc-vpn.org/documentation-1.1/)
 
-docker run -it --rm --name tinc tonimichel/vpn_kungf.ooo --help
+docker run -it --rm --name tinc tonimichel/vpn_kungf.ooo tincd --help
 
 To enter the container for various reasons, 
 use `docker exec`, for example as `docker exec -ti [container-name] /bin/bash`.
