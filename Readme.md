@@ -30,11 +30,7 @@ A reasonable basic run command loading persisted configuration from `/srv/tinc` 
         --device=/dev/net/tun \
         --cap-add NET_ADMIN \
         --volume /srv/tinc:/etc/tinc \
-        tonimichel/vpn_kungf.ooo start -D
-
-Everything following `start` are parameters to `tincd`, `-D` makes sure the daemon stays active and does not actually daemonize, 
-which would terminate the container.
-
+        tonimichel/vpn_kungf.ooo /usr/sbin/tincd --help -U nobody
 
 
 ## Administration and Maintenance
